@@ -1,0 +1,74 @@
+.testimonyWrapper{
+    background: #ffffff;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.testimonyBox{
+    color: #00000080;
+    width: 50%;
+    text-align: center;
+    margin: 0px auto;
+    padding: 3rem 1rem;
+}
+
+.testimonyBox img{
+    margin: 0px auto;
+}
+
+.testimonyBox h2{
+    color: #7743DB;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+.owl-carousel{
+    width: 70% !important;
+    margin: 0px auto;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #7843dbd9 !important;
+}
+
+.item-carousel{
+    color: #000000;
+    padding: 1rem;
+    margin: 1.5rem unset;
+    border: 2px #4b4b4b74 solid;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonyText{
+    min-height: 12vh;
+    max-height: 12vh;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.testimonyUser {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.testimonyUser-img {
+    width: 20%;
+}
+
+.testimonyUser-name {
+    width: 80%;
+    margin-left: 1rem;
+}
+
+.item-carousel h3{
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.item-carousel span{
+    font-size: 0.7em;
+    color: #4b4b4bc6;
+}

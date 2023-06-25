@@ -1,0 +1,110 @@
+.topside-footer {
+    background: #7743DB;
+    padding: 1rem;
+}
+
+.topside-footer h3 {
+font-size: 1.5em;
+font-weight: bold;
+}
+
+.footerBox.top {
+    width: 50%;
+}
+
+.footer-box.top,.footer-box.top.rightBox {
+    width: 50%;
+    border: none;
+}
+
+.footer-box.top.rightBox{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-emoji{
+    width: 24px !important;
+    display: inline-block;
+}
+
+.regist-btn{
+    background: #3B3486;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+.footerWrapper {
+    background: #3B3486;
+    padding: 1rem;
+}
+
+.footerBox {
+    width: 90%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-box {
+    width: 30%;
+    padding: 1rem 0px;
+    font-size: 1em;
+    border-bottom: 1px #fff solid;
+}
+
+.footer-box.leftBox span {
+    font-size: 0.9em;
+}
+
+.footer-box.leftBox p {
+    font-size: 0.8em;
+}
+
+.footer-box.rightBox{
+    width: 40%;
+}
+
+.footer-box-logo {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-box-logo img{
+    width: 10% !important;
+    height: auto !important;
+}
+
+.footer-box-logo h2 {
+    text-transform: uppercase;
+    margin: 1.5rem 0px 1.5rem 1rem;
+}
+
+.footer-box-item {
+    width: 50%;
+    margin: 0px auto;
+}
+
+.sosmed-icon {
+    background: #7743DB;
+    width: fit-content;
+    padding: 0.5rem;
+    margin: 1rem;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.sosmed-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-link{
+    width: fit-content;
+    padding: 0.5rem;
+    margin: 1rem;
+    display: inline-block;
+}
