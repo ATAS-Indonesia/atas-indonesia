@@ -11,6 +11,27 @@ const OwlCarousel = dynamic(() => import('react-owl-carousel'), {
     ssr: false,
 });
 
+function ItemCarousel(props: any) {
+    return (
+        <>
+            <div className='item-carousel'>
+                <div className='testimonyText'>
+                    <p>{props.textTestimony}</p>
+                </div>
+                <div className='testimonyUser'>
+                    <div className='testimonyUser-img'>
+                        <Image src={props.imgUser} alt={props.imgAlt} />
+                    </div>
+                    <div className='testimonyUser-name'>
+                        <h3>{props.name}</h3>
+                        <span>{props.desc}</span>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
 function TestimonySection() {
     return (
         <>
@@ -22,105 +43,51 @@ function TestimonySection() {
                 </div>
 
                 <OwlCarousel className='owl-theme' loop margin={10} nav>
-                    <div className='item-carousel'>
-                        <div className='testimonyText'>
-                            <p>“ Wah, pokoknya kalian para garuda wajib banget
-                                gabung ATAS. Aku ikut seminar luar negeri tahun 2022
-                                karena dapat informasi dari temen-temen ATAS. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser1} alt='user1' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Chandra Dwi Cahya</h3>
-                                <span>Pramuka Garuda Jawa Tengah</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='item-carousel middle'>
-                        <div className='testimonyText'>
-                            <p>“ Percaya gak sih, aku lolos masuk IPB karena
-                                dibantu dengan ATAS. Penasaran kan kalian?
-                                Cepet-cepet gabung deh!. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser2} alt='user2' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Kartika Cinta</h3>
-                                <span>Pramuka Garuda Jawa Barat</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='item-carousel'>
-                        <div className='testimonyText'>
-                            <p>“ Saya gak nyangka banget dapat undangan
-                                untuk jadi pembicara di SMP saya dulu hanya
-                                karena saya adalah anggota ATAS. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser3} alt='user3' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Bli Made</h3>
-                                <span>Pramuka Garuda Bali</span>
-                            </div>
-                        </div>
-                    </div>
+                    <ItemCarousel
+                        textTestimony='“ Wah, pokoknya kalian para garuda wajib banget gabung ATAS. Aku ikut seminar luar negeri tahun 2022 karena dapat informasi dari temen-temen ATAS. ”'
+                        imgUser={imgUser1}
+                        imgAlt='user1'
+                        name='Chandra Dwi Cahya'
+                        desc='Pramuka Garuda Jawa Tengah'
+                    />
+                    <ItemCarousel
+                        textTestimony='“ Percaya gak sih, aku lolos masuk IPB karena dibantu dengan ATAS. Penasaran kan kalian? Cepet-cepet gabung deh!. ”'
+                        imgUser={imgUser2}
+                        imgAlt='user2'
+                        name='Kartika Cinta'
+                        desc='Pramuka Garuda Jawa Barat'
+                    />
+                    <ItemCarousel
+                        textTestimony='“ Saya gak nyangka banget dapat undangan untuk jadi pembicara di SMP saya dulu hanya karena saya adalah anggota ATAS. ”'
+                        imgUser={imgUser3}
+                        imgAlt='user3'
+                        name='Bli Made'
+                        desc='Pramuka Garuda Bali'
+                    />
 
                     {/* borderline */}
 
-                    <div className='item-carousel'>
-                        <div className='testimonyText'>
-                            <p>“ Percaya gak sih, aku lolos masuk IPB karena
-                                dibantu dengan ATAS. Penasaran kan kalian?
-                                Cepet-cepet gabung deh!. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser2} alt='user2' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Kartika Cinta</h3>
-                                <span>Pramuka Garuda Jawa Barat</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='item-carousel middle'>
-                        <div className='testimonyText'>
-                            <p>“ Saya gak nyangka banget dapat undangan
-                                untuk jadi pembicara di SMP saya dulu hanya
-                                karena saya adalah anggota ATAS. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser3} alt='user3' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Bli Made</h3>
-                                <span>Pramuka Garuda Bali</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='item-carousel'>
-                        <div className='testimonyText'>
-                            <p>“ Wah, pokoknya kalian para garuda wajib banget
-                                gabung ATAS. Aku ikut seminar luar negeri tahun 2022
-                                karena dapat informasi dari temen-temen ATAS. ”</p>
-                        </div>
-                        <div className='testimonyUser'>
-                            <div className='testimonyUser-img'>
-                                <Image src={imgUser1} alt='user1' />
-                            </div>
-                            <div className='testimonyUser-name'>
-                                <h3>Chandra Dwi Cahya</h3>
-                                <span>Pramuka Garuda Jawa Tengah</span>
-                            </div>
-                        </div>
-                    </div>
+                    <ItemCarousel
+                        textTestimony='“ Wah, pokoknya kalian para garuda wajib banget gabung ATAS. Aku ikut seminar luar negeri tahun 2022 karena dapat informasi dari temen-temen ATAS. ”'
+                        imgUser={imgUser1}
+                        imgAlt='user1'
+                        name='Chandra Dwi Cahya'
+                        desc='Pramuka Garuda Jawa Tengah'
+                    />
+                    <ItemCarousel
+                        textTestimony='“ Percaya gak sih, aku lolos masuk IPB karena dibantu dengan ATAS. Penasaran kan kalian? Cepet-cepet gabung deh!. ”'
+                        imgUser={imgUser2}
+                        imgAlt='user2'
+                        name='Kartika Cinta'
+                        desc='Pramuka Garuda Jawa Barat'
+                    />
+                    <ItemCarousel
+                        textTestimony='“ Saya gak nyangka banget dapat undangan untuk jadi pembicara di SMP saya dulu hanya karena saya adalah anggota ATAS. ”'
+                        imgUser={imgUser3}
+                        imgAlt='user3'
+                        name='Bli Made'
+                        desc='Pramuka Garuda Bali'
+                    />
                 </OwlCarousel>
 
             </div>
