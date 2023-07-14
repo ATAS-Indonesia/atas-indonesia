@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import logoAtasM from '../images/atas-management-logo.svg'
 import logoFb from '../images/fb-logo.svg'
 import logoYt from '../images/Yt-logo.svg'
@@ -9,9 +10,9 @@ import starStruck from '../images/star-struck-emoji.svg'
 function SosmedIcon(props: any) {
     return (
         <>
-            <a href={props.link} className='sosmed-icon'>
+            <Link href={props.link} className='sosmed-icon'>
                 <Image src={props.logo} alt={props.alt} />
-            </a>
+            </Link>
         </>
     )
 }
@@ -19,9 +20,9 @@ function SosmedIcon(props: any) {
 function FooterLink(props: any) {
     return (
         <>
-            <a href={props.link} className='footer-link'>
+            <Link href={props.link} className='footer-link'>
                 {props.textLink}
-            </a>
+            </Link>
         </>
     )
 }
@@ -54,18 +55,18 @@ function FooterSection() {
                     </div>
                     <div className='footer-box centerBox'>
                         <div className='footer-box-item'>
-                            <SosmedIcon link='' logo={logoFb} alt='logo-facebook' />
-                            <SosmedIcon link='' logo={logoYt} alt='logo-youtube' />
-                            <SosmedIcon link='' logo={logoIg} alt='logo-instagram' />
-                            <SosmedIcon link='' logo={logoTt} alt='logo-tiktok' />
+                            <SosmedIcon link='/' logo={logoFb} alt='logo-facebook' />
+                            <SosmedIcon link='/' logo={logoYt} alt='logo-youtube' />
+                            <SosmedIcon link='/' logo={logoIg} alt='logo-instagram' />
+                            <SosmedIcon link='/' logo={logoTt} alt='logo-tiktok' />
                         </div>
                     </div>
                     <div className='footer-box rightBox'>
                         <div className='footer-box-item'>
-                            <FooterLink link='' textLink='Beranda' />
-                            <FooterLink link='' textLink='Aktivitas' />
-                            <FooterLink link='' textLink='Tentang' />
-                            <FooterLink link='' textLink='FaQ' />
+                            <FooterLink link='/' textLink='Beranda' />
+                            <FooterLink link='/' textLink='Aktivitas' />
+                            <FooterLink link='/' textLink='Tentang' />
+                            <FooterLink link='/faq' textLink='FaQ' />
                         </div>
                     </div>
                 </div>

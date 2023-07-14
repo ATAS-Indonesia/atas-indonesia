@@ -1,0 +1,106 @@
+.topside-faq{
+    background: #7743DB;
+    height: 30vh;
+    margin-bottom: -30vh;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.topside-faq h2{
+    width: 50%;
+    padding: 5rem 1rem 2rem 5rem;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.topside-faq p{
+    width: 40%;
+    padding: 5.2rem 6rem 2rem 4rem;
+    font-size: 0.9em;
+}
+
+.faq-emoji{
+    width: 24px !important;
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+.bottomside-faq{
+    background-image: url('../images/question-mark.svg');
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: 22%;
+    background-position: 85% 15%;
+    background-position-y: bottom;
+    min-height: 100vh;
+    max-height: 100%;
+    padding-top: 30vh;
+}
+
+.bottomside-faq h2{
+    color: #7743DB;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.bottomside-faq h3{
+    color: #3B3486;
+    font-weight: bold;
+    margin: 1rem 0px;
+}
+
+.bottomside-faq p{
+    color: #000000;
+}
+
+.bottomside-faq hr{
+    border: 0.5px solid #3B3486;
+}
+
+.faq-box{
+    width: 30%;
+    margin: 5rem 5rem 0px;
+}
+
+.faq-item-box{
+    margin: 2rem 0px 1rem 0px;
+}
+
+.faq-item-box li{
+    margin: 1rem 0px;
+}
+
+.faq{
+    display: block;
+}
+
+.faqBtn-item{
+    background-image: url('../images/btn-plus.svg');
+    background-size: 100%;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.3rem;
+    display: inline-block;
+    position: absolute;
+    left: 34%;
+    cursor: pointer;
+}
+
+.is-plus{
+    background-image: url('../images/btn-plus.svg');
+    background-size: 100%;
+}
+
+.is-minus{
+    background-image: url('../images/btn-minus.svg');
+    background-size: 100%;}
+
+.is-hidden{
+    display: none;
+}
+
+.is-display{
+    display: block;
+}
