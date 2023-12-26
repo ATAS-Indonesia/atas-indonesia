@@ -1,13 +1,3 @@
-import Image from "next/image";
-import kakprasimg from "../assets/kakpras.png";
-import kakariimg from "../assets/kakari.png";
-import kakimg from "../assets/kak.png";
-import kakrioimg from "../assets/kakrio.png";
-// import java from "../assets/java.svg";
-// import sumatra from "../assets/sumatra.svg";
-// import kalimantan from "../assets/kalimantan.svg";
-// import sulawesi from "../assets/sulawesi.svg";
-
 function Dashboard() {
   return (
     <>
