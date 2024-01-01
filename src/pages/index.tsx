@@ -1,18 +1,20 @@
-import Head from 'next/head'
 import FooterSection from '@/components/footer-section'
 import TestimonySection from '@/components/testimony-section'
+import Footer from "@/components/footer";
+import Dashboard from "@/components/dashboard";
+import SEO from "@/components/SEO";
 
-export default function Home() {
+export default function Main() {
   return (
     <>
-      <Head>
-        <title>ATAS Indonesia</title>
-        <meta name="description" content="Laman resmi ATAS Indonesia" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO />
 
+      <Dashboard />
+        
       <TestimonySection />
       <FooterSection />
+
+      <Footer />
     </>
-  )
+  );
 }

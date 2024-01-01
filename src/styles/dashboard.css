@@ -1,0 +1,298 @@
+.text-title {
+  display: flex;
+  align-items: start;
+  gap: 36px;
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.layout-title-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+
+.navbar {
+  display: flex;
+  height: 130px;
+  padding: 36px 150px;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  background-color: #3b3486;
+}
+
+.title-nav {
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 110%;
+  letter-spacing: 0.72px;
+}
+
+.title-bold {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 0.24px;
+}
+
+.button-join {
+  display: flex;
+  padding: 24px 64px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.text-quotes {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.12px;
+}
+
+.layout-foto-gen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 72px;
+}
+
+.java {
+  width: 140px;
+  height: 41.16px;
+}
+
+.kalimantan {
+  width: 75px;
+  height: 81.019px;
+}
+
+.sulawesi {
+  width: 75px;
+  height: 85.623px;
+}
+
+.sumatera {
+  width: 75px;
+  height: 76.977px;
+}
+
+.layout-footer {
+  display: flex;
+  width: 100%;
+  padding: 48px 0px;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  background: #7743db;
+}
+
+.line {
+  width: 3px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.layout-island {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+}
+
+.font-footer {
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.12px;
+}
+
+.layout-foto {
+  display: flex;
+  align-items: flex-start;
+  gap: 72px;
+}
+
+.foto-oval {
+  width: 240px;
+  height: 240px;
+  border-radius: 240px;
+  border-radius: 240px;
+}
+
+.foto-corner {
+  width: 240px;
+  height: 240px;
+}
+
+.text-button {
+  color: #3b3486;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+}
+
+.title-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+  letter-spacing: 0.1px;
+}
+
+.text-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+  letter-spacing: 0.1px;
+}
+
+.layout-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 500px;
+}
+
+.item-nav {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.text-item-nav {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.dashboard {
+  display: flex;
+  padding: 120px 150px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3b3486;
+}
+
+/* Footer */
+
+.topside-footer {
+  background: #7743db;
+  padding: 1rem;
+}
+
+.topside-footer h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.footerBox.top {
+  width: 50%;
+}
+
+.footer-box.top,
+.footer-box.top.rightBox {
+  width: 50%;
+  border: none;
+}
+
+.footer-box.top.rightBox {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-emoji {
+  width: 24px !important;
+  display: inline-block;
+}
+
+.regist-btn {
+  background: #3b3486;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+}
+
+.footerWrapper {
+  background: #3b3486;
+  padding: 1rem;
+}
+
+.footerBox {
+  width: 90%;
+  padding: 1rem;
+  margin: 0.5rem auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-box {
+  width: 30%;
+  padding: 1rem 0px;
+  font-size: 1em;
+  border-bottom: 1px #fff solid;
+}
+
+.footer-box.leftBox span {
+  font-size: 0.9em;
+}
+
+.footer-box.leftBox p {
+  font-size: 0.8em;
+}
+
+.footer-box.rightBox {
+  width: 40%;
+}
+
+.footer-box-logo {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-box-logo img {
+  width: 10% !important;
+  height: auto !important;
+}
+
+.footer-box-logo h2 {
+  text-transform: uppercase;
+  margin: 1.5rem 0px;
+}
+
+.footer-box-item {
+  width: 50%;
+  margin: 0px auto;
+}
+
+.sosmed-icon {
+  background: #7743db;
+  width: fit-content;
+  padding: 0.5rem;
+  margin: 1rem;
+  display: inline-block;
+  border-radius: 12px;
+}
+
+.sosmed-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-link {
+  width: fit-content;
+  padding: 0.5rem;
+  margin: 1rem;
+  display: inline-block;
+}
