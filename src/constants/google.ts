@@ -1,0 +1,5 @@
+export const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID;
+export const CLIENT_SECRET = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_SECRET;
+export const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+export const DATABASE_ATAS_SHEET_ID =
+  "1P0EdjypxIkbSCKQA77XX6nlZEREevGyHYuk9KT6hDPw";
