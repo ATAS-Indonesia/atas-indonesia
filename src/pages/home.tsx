@@ -1,9 +1,16 @@
-import Head from "next/head";
 import Image from "next/image";
+import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import SEO from "@/components/SEO";
+import useMemberList from "@/hooks/useMemberList";
 
 export default function Home() {
+  const { data, isFetching } = useMemberList();
+
+  useEffect(() => {
+    console.log({ data, isFetching });
+  }, [data, isFetching]);
+
   return (
     <>
       <SEO />
