@@ -8,22 +8,20 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 
 function ItemCarousel(props: any) {
   return (
-    <>
-      <div className="item-carousel">
-        <div className="testimonyText">
-          <p>{props.textTestimony}</p>
+    <div className="item-carousel">
+      <div className="testimonyText">
+        <p>{props.textTestimony}</p>
+      </div>
+      <div className="testimonyUser">
+        <div className="testimonyUser-img">
+          <img src={props.imgUser} alt={props.imgAlt} />
         </div>
-        <div className="testimonyUser">
-          <div className="testimonyUser-img">
-            <img src={props.imgUser} alt={props.imgAlt} />
-          </div>
-          <div className="testimonyUser-name">
-            <h3>{props.name}</h3>
-            <span>{props.desc}</span>
-          </div>
+        <div className="testimonyUser-name">
+          <h3>{props.name}</h3>
+          <span>{props.desc}</span>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
