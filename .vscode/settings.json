@@ -4,7 +4,7 @@
   "editor.wordWrapColumn": 100,
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.formatOnSave": false
