@@ -17,6 +17,10 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        atas: {
+          primary: "hsl(var(--atas-primary))",
+          secondary: "hsl(var(--atas-secondary))",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
