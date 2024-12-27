@@ -50,26 +50,21 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="layout-footer">
+      <div className="flex items-center justify-center">
         <div className="font-footer">
           Anggota ATAS Indonesia lebih dari 3,000+
         </div>
 
         <div className="line" />
 
-        <div className="layout-island">
-          <div className="java">
-            <img src="/images/java.svg" alt="java" />
-          </div>
-          <div className="sumatera">
-            <img src="/images/sumatra.svg" alt="sumatera" />
-          </div>
-          <div className="kalimantan">
-            <img src="/images/kalimantan.svg" alt="kalimantan" />
-          </div>
-          <div className="sulawesi">
-            <img src="/images/sulawesi.svg" alt="sulawesi" />
-          </div>
+        <div className="grid grid-cols-4 gap-5">
+          <img src="/images/java.svg" alt="java" />
+
+          <img src="/images/sumatra.svg" alt="sumatera" />
+
+          <img src="/images/kalimantan.svg" alt="kalimantan" />
+
+          <img src="/images/sulawesi.svg" alt="sulawesi" />
         </div>
       </div>
     </>
