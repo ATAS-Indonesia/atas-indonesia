@@ -9,3 +9,7 @@ export const TIKTOK_LINK = "https://www.tiktok.com/@atasindonesia";
 export const QNA_LINK = "https://bit.ly/QnAATAS";
 export const NOMOR_LINK = "https://bit.ly/NomorATAS";
 export const FORM_LINK = "https://forms.gle/QzM8wNqmfAXoi2718";
+
+export const PENGENALAN_LINK = "https://s.id/pengenalan-atas";
+export const JOIN_LINK = "https://s.id/daftaratas";
+export const MEMBER_LIST_LINK = "https://s.id/databaseatas";
