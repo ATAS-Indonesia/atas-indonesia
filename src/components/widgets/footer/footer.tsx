@@ -4,18 +4,16 @@ import {
   IoLogoYoutube,
   IoLogoTiktok,
 } from "react-icons/io5";
-import { JoinCta } from "./widgets/footer";
-import { TotalMember } from "./widgets/footer/total-member";
+import { JoinCta } from "./join-cta";
+import { TotalMember } from "./total-member";
 import {
   FACEBOOK_LINK,
-  FORM_LINK,
   INSTAGRAM_LINK,
-  QNA_LINK,
   TIKTOK_LINK,
   YOUTUBE_LINK,
 } from "@/constants/links";
 
-function Footer() {
+export function Footer() {
   return (
     <>
       <TotalMember />
@@ -43,5 +41,3 @@ function Footer() {
     </>
   );
 }
-
-export default Footer;
