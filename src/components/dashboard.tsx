@@ -1,3 +1,5 @@
+import { Button } from "./ui/button";
+
 function Dashboard() {
   return (
     <>
@@ -22,9 +24,9 @@ function Dashboard() {
               yang telah mencapai tingkatan Garuda.
             </div>
           </div>
-          <div className="button-join">
-            <button className="text-button">Gabung!</button>
-          </div>
+
+          <Button>Gabung!</Button>
+
           <div className="text-quotes">
             “Karena pramuka tidak ada kata tamat.”
           </div>
