@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
 
 import "../styles/globals.css";
-import "../styles/dashboard.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { outfit } from "@/styles/fonts";
 

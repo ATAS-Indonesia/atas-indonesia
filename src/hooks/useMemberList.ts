@@ -13,7 +13,7 @@ export interface Member {
 }
 
 const GOOGLE_SHEET_LINK =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vR31M811KmpqtBdUVWnl6lfyM5kPIXAKtfDEJ4hQWmiUw60z1yox5ibtmGopfRPXjS0Gt38lZ-wsNHZ/pub?gid=828340925&single=true&output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vR31M811KmpqtBdUVWnl6lfyM5kPIXAKtfDEJ4hQWmiUw60z1yox5ibtmGopfRPXjS0Gt38lZ-wsNHZ/pub?gid=17432309&single=true&output=csv";
 
 const useMemberList = () => {
   const memberList = useQuery({
