@@ -1,6 +1,7 @@
 "use client";
 
 import { Navigation } from "./navigation";
+import { JOIN_LINK, PENGENALAN_LINK } from "@/constants/links";
 
 export function Header() {
   return (
@@ -36,12 +37,19 @@ export function Header() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href={JOIN_LINK}
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 Gabung!
               </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
+              <a
+                href={PENGENALAN_LINK}
+                className="text-sm/6 font-semibold text-gray-900"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Pelajari lebih lanjut <span aria-hidden="true">→</span>
               </a>
             </div>
