@@ -1,31 +1,101 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+import { gql, request } from "graphql-request";
 import Image from "next/image";
 
-const posts = [
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description:
-      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
-    thumbnail:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-  },
-  // More posts...
-];
+interface BlogPost {
+  publication: {
+    posts: {
+      edges: Array<{
+        node: {
+          id: string;
+          title: string;
+          brief: string;
+          slug: string;
+          url: string;
+          publishedAt: string;
+          readTimeInMinutes: number;
+          author: {
+            id: string;
+            name: string;
+            profilePicture: string;
+          };
+          tags: Array<{
+            id: string;
+            name: string;
+          }>;
+          coverImage: {
+            attribution: string;
+            photographer: string;
+            url: string;
+          };
+        };
+      }>;
+    };
+    id: string;
+    title: string;
+  };
+}
 
-const post = posts[0];
+const postQuery = gql`
+  query {
+    publication(host: "blog.atas.or.id") {
+      posts(first: 3) {
+        edges {
+          node {
+            id
+            title
+            brief
+            slug
+            url
+            publishedAt
+            readTimeInMinutes
+            author {
+              id
+              name
+              profilePicture
+            }
+            tags {
+              id
+              name
+            }
+            coverImage {
+              attribution
+              photographer
+              url
+            }
+          }
+        }
+      }
+      id
+      title
+    }
+  }
+`;
 
 export function Blog() {
+  const { data } = useQuery({
+    queryKey: ["blog"],
+    queryFn: async () => {
+      const posts = await request<BlogPost>(
+        "https://gql.hashnode.com",
+        postQuery
+      );
+      const blogPosts = posts.publication.posts.edges.map(post => post.node);
+      return {
+        id: posts.publication.id,
+        title: posts.publication.title,
+        blogs: blogPosts,
+      };
+    },
+    staleTime: 1000 * 60 * 60 * 24 * 7, // 7 days
+  });
+
+  // TODO: Add skeleton loader upon isLoading
+  const blogs = data?.blogs || [];
+
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -38,54 +108,57 @@ export function Blog() {
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {Array.from({ length: 3 }).map((_, index) => (
+          {blogs.map((post, index) => (
             <article
               key={index}
               className="flex max-w-xl flex-col items-start justify-between"
             >
               <Image
-                src={post.thumbnail}
+                src={post.coverImage.url}
                 alt={post.title}
                 width={500}
                 height={300}
-                className="w-full h-auto rounded-lg mb-4"
+                className="w-full h-auto rounded-lg mb-4 shadow-lg"
               />
               <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.datetime} className="text-gray-500">
-                  {post.date}
+                <time dateTime={post.publishedAt} className="text-gray-500">
+                  {format(new Date(post.publishedAt), "MMM dd, yyyy")}
                 </time>
-                <a
-                  href={post.category.href}
-                  className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                >
-                  {post.category.title}
-                </a>
+                <span className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+                  {post.readTimeInMinutes} menit
+                </span>
               </div>
               <div className="group relative">
                 <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                  <a href={post.href}>
+                  <a href={post.url}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </a>
                 </h3>
                 <p className="mt-5 line-clamp-2 text-sm/6 text-gray-600">
-                  {post.description}
+                  {post.brief}
                 </p>
               </div>
               <div className="relative mt-8 flex items-center gap-x-4">
-                <img
-                  alt=""
-                  src={post.author.imageUrl}
+                <Image
+                  alt="ATAS Indonesia"
+                  src={post.author.profilePicture}
+                  width={100}
+                  height={100}
                   className="size-10 rounded-full bg-gray-50"
                 />
                 <div className="text-sm/6">
                   <p className="font-semibold text-gray-900">
-                    <a href={post.author.href}>
+                    <a
+                      href="https://blog.atas.or.id"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <span className="absolute inset-0" />
                       {post.author.name}
                     </a>
                   </p>
-                  <p className="text-gray-600">{post.author.role}</p>
+                  <p className="text-gray-600">Volunteer ATAS Indonesia</p>
                 </div>
               </div>
             </article>
