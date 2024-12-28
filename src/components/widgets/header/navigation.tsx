@@ -2,6 +2,7 @@
 
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 import { navigation } from "./constants";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MEMBER_LIST_LINK } from "@/constants/links";
@@ -16,14 +17,14 @@ export function Navigation() {
         className="flex items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">ATAS Indonesia</span>
             <img
               alt=""
               src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
         </div>
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetTrigger>
