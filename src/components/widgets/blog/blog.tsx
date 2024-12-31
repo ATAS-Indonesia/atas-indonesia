@@ -118,7 +118,7 @@ export function Blog() {
                 alt={post.title}
                 width={500}
                 height={300}
-                className="w-full h-auto rounded-lg mb-4 shadow-lg"
+                className="w-full h-[210px] rounded-lg mb-4 shadow-lg"
               />
               <div className="flex items-center gap-x-4 text-xs">
                 <time dateTime={post.publishedAt} className="text-gray-500">

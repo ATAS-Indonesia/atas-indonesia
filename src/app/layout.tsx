@@ -1,7 +1,7 @@
-import { Footer } from "@/components/widgets/footer";
-import { Header } from "@/components/widgets/header";
 import "@/styles/globals.css";
+import { Viewport } from "next";
 import { outfit } from "@/styles/fonts";
+import { AppProvider } from "@/lib/providers/app-provider";
 
 export const metadata = {
   title: "ATAS Indonesia",
@@ -14,8 +14,8 @@ export const metadata = {
     title: "ATAS Indonesia",
     description:
       "Laman Resmi ATAS Chapter Indonesia. Persaudaraan Pramuka Garuda Tingkat Dunia cabang Indonesia",
-    images: ["/images/management_atas.svg"],
-    url: "https://atasindonesia.org",
+    images: "/images/atas-indo.avif",
+    url: "https://atas.or.id",
     type: "website",
   },
   twitter: {
@@ -24,9 +24,16 @@ export const metadata = {
     title: "ATAS Indonesia",
     description:
       "Laman Resmi ATAS Chapter Indonesia. Persaudaraan Pramuka Garuda Tingkat Dunia cabang Indonesia",
-    images: ["/images/management_atas.svg"],
+    images: "/images/atas-indo.avif",
   },
-  viewport: "width=device-width, initial-scale=1.0",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -37,9 +44,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={outfit.className}>
-        <Header />
-        {children}
-        <Footer />
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
