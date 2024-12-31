@@ -17,6 +17,7 @@ import {
   ChevronDown,
   MoreHorizontal,
   Settings2,
+  Squirrel,
 } from "lucide-react";
 import { useState } from "react";
 import { Member, useFetchMember } from "../hooks/useFetchMember";
@@ -39,6 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const columnHelper = createColumnHelper<Member>();
 
@@ -188,6 +190,31 @@ export const MemberTable = () => {
             ))}
           </TableHeader>
           <TableBody>
+            {isLoading &&
+              table.getHeaderGroups().map(headerGroup => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <TableCell key={header.id}>
+                      <Skeleton className="h-4 w-full" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+
+            {isError ||
+              (table.getFilteredRowModel().rows.length === 0 && (
+                <TableRow>
+                  <TableCell
+                    colSpan={table.getVisibleLeafColumns().length}
+                    className="min-h-24 text-center py-10"
+                  >
+                    <Squirrel className="size-24 mx-auto text-atas-primary-200 mb-6" />
+                    <p className="text-sm text-muted-foreground">
+                      Uh oh, data tidak ditemukan.
+                    </p>
+                  </TableCell>
+                </TableRow>
+              ))}
             {table.getRowModel().rows.map(row => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map(cell => (
