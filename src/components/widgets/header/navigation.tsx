@@ -64,10 +64,8 @@ export function Navigation() {
                 </div>
                 <div className="py-6">
                   <Link
-                    href={MEMBER_LIST_LINK}
+                    href="/cek-nomor"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                    target="_blank"
-                    rel="noreferrer noopener"
                   >
                     Cek Nomor ATAS
                   </Link>
@@ -89,10 +87,8 @@ export function Navigation() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            href={MEMBER_LIST_LINK}
+            href="/cek-nomor"
             className="text-sm/6 font-semibold text-gray-900"
-            target="_blank"
-            rel="noreferrer noopener"
           >
             Cek Nomor ATAS <span aria-hidden="true">&rarr;</span>
           </Link>
