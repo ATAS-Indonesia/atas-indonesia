@@ -18,7 +18,20 @@ module.exports = {
       },
       colors: {
         atas: {
-          primary: "hsl(var(--atas-primary))",
+          primary: {
+            50: "#f6f4fe",
+            100: "#eeebfc",
+            200: "#dedafa",
+            300: "#c6bcf6",
+            400: "#aa95f0",
+            500: "#8e6ae8",
+            600: "#7743db",
+            700: "#6d38c9",
+            800: "#5b2fa8",
+            900: "#4b288a",
+            950: "#2e185d",
+            DEFAULT: "hsl(var(--atas-primary))",
+          },
           secondary: "hsl(var(--atas-secondary))",
         },
         background: "hsl(var(--background))",
