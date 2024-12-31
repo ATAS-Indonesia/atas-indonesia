@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ComingSoon } from "@/components/coming-soon";
+import { LazyFaq } from "@/features/faq";
 
 export const metadata: Metadata = {
   title: "FAQs - ATAS Indonesia",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function FaqsPage() {
-  return <ComingSoon />;
+  return <LazyFaq />;
 }
