@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { navigation } from "./constants";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { MEMBER_LIST_LINK } from "@/constants/links";
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

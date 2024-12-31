@@ -1,16 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-import { useFetchMember } from "./hooks/useFetchMember";
 import { MemberTable } from "./components/member-table";
 
 export const CekNomor = () => {
-  const { data, isError, isLoading } = useFetchMember();
-
-  useEffect(() => {
-    console.log({ member: data });
-  }, [data]);
-
   return (
     <div>
       <div className="max-w-2xl lg:mx-0">

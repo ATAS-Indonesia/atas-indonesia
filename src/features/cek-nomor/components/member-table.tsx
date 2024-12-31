@@ -81,6 +81,8 @@ const columns = [
   }),
 ];
 
+const PAGE_SIZE = 20;
+
 export const MemberTable = () => {
   const { data, isError, isLoading } = useFetchMember();
 
@@ -88,7 +90,6 @@ export const MemberTable = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
-  const [pageSize, setPageSize] = useState(20);
   const [pageIndex, setPageIndex] = useState(0);
 
   const table = useReactTable({
@@ -99,7 +100,7 @@ export const MemberTable = () => {
       sorting,
       columnFilters,
       pagination: {
-        pageSize,
+        pageSize: PAGE_SIZE,
         pageIndex,
       },
     },
@@ -221,9 +222,9 @@ export const MemberTable = () => {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          Showing {pageIndex * pageSize + 1} -{" "}
+          Showing {pageIndex * PAGE_SIZE + 1} -{" "}
           {Math.min(
-            pageIndex * pageSize + pageSize,
+            pageIndex * PAGE_SIZE + PAGE_SIZE,
             table.getFilteredRowModel().rows.length
           )}{" "}
           of {table.getFilteredRowModel().rows.length}
