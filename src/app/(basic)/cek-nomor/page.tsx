@@ -1,3 +1,5 @@
-export default function CekNomor() {
-  return <div>CekNomor</div>;
+import { LazyCekNomor } from "@/features/cek-nomor";
+
+export default function CekNomorPage() {
+  return <LazyCekNomor />;
 }
