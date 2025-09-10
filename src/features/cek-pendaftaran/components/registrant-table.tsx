@@ -213,9 +213,9 @@ export const RegistrantTable = () => {
               checked={statusFilter === undefined}
               onCheckedChange={checked => {
                 if (checked) {
-                  setStatusFilter("approved");
-                } else {
                   setStatusFilter(undefined);
+                } else {
+                  setStatusFilter("approved");
                 }
               }}
             >
