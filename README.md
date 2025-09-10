@@ -4,9 +4,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 - [x] Create page cek nomor
 - [x] Create page FAQ
+- [x] Create page cek pendaftaran
 - [ ] Create page informasi inagurasi terdekat
 - [ ] Create page download sertifikat
-- [x] Create page cek pendaftaran
 
 ## Getting Started
 
