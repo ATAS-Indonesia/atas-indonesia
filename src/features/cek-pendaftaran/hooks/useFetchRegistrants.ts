@@ -1,8 +1,9 @@
-import { parseTSV } from "@/utils/data";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { parseTSV } from "@/utils/data";
 
-const GOOGLE_SHEET_LINK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRq3NMS6GuFWyClAo70ZM7gOnz8VODxh7npIul23bK-pVoCJaB08TG-moooGJ_ETxCatDY9aPiDScgF/pub?gid=1134636585&single=true&output=tsv";
+const GOOGLE_SHEET_LINK =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRq3NMS6GuFWyClAo70ZM7gOnz8VODxh7npIul23bK-pVoCJaB08TG-moooGJ_ETxCatDY9aPiDScgF/pub?gid=1134636585&single=true&output=tsv";
 
 export const useFetchRegistrants = () => {
   const registrants = useQuery({

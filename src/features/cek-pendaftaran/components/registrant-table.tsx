@@ -15,6 +15,7 @@ import {
 import { Settings2, Squirrel } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useFetchRegistrants } from "../hooks/useFetchRegistrants";
+import type { RegisteredMember } from "../hooks/types";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -32,7 +33,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { RegisteredMember } from "../hooks/types";
 import {
   Select,
   SelectContent,
@@ -67,7 +67,9 @@ const columns = [
     header: () => <div className="hidden sm:block">Kwartir Cabang</div>,
     cell: ({ row }) => {
       return (
-        <div className="hidden sm:block">{row.getValue("Asal Kwartir Cabang")}</div>
+        <div className="hidden sm:block">
+          {row.getValue("Asal Kwartir Cabang")}
+        </div>
       );
     },
     enableHiding: true,
@@ -77,7 +79,9 @@ const columns = [
     header: () => <div className="hidden sm:block">Kwartir Daerah</div>,
     cell: ({ row }) => {
       return (
-        <div className="hidden sm:block">{row.getValue("Asal Kwartir Daerah")}</div>
+        <div className="hidden sm:block">
+          {row.getValue("Asal Kwartir Daerah")}
+        </div>
       );
     },
     enableHiding: true,
@@ -98,7 +102,7 @@ const columns = [
 
       return (
         <div>
-          <a href={link} target="_blank" rel="noreferrer noopener" >
+          <a href={link} target="_blank" rel="noreferrer noopener">
             {sfhLink && "Safe From Harm"}
             {sdgLink && isSdgLinkValid && "SDGs Hub WOSM"}
             {sdgLink && !isSdgLinkValid && (
@@ -117,10 +121,17 @@ const columns = [
       const status = row.original["Status"];
 
       if (status.toLowerCase().includes("approved")) {
-        return <Badge variant={"secondary"} className="bg-atas-primary-200 text-atas-primary-950">Disetujui</Badge>
+        return (
+          <Badge
+            variant={"secondary"}
+            className="bg-atas-primary-200 text-atas-primary-950"
+          >
+            Disetujui
+          </Badge>
+        );
       }
 
-      return <div>Proses Verifikasi</div>
+      return <div>Proses Verifikasi</div>;
     },
     enableHiding: false,
     enableSorting: true,
@@ -135,7 +146,9 @@ export const RegistrantTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [statusFilter, setStatusFilter] = useState<"approved"| "empty" | undefined>(undefined);
+  const [statusFilter, setStatusFilter] = useState<
+    "approved" | "empty" | undefined
+  >(undefined);
 
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
@@ -145,11 +158,15 @@ export const RegistrantTable = () => {
     if (statusFilter === undefined) return data;
     return data?.filter(item => {
       if (statusFilter === "approved") {
-        return (item as RegisteredMember).Status.toLowerCase().includes("approved");
+        return (item as RegisteredMember).Status.toLowerCase().includes(
+          "approved"
+        );
       }
 
       if (statusFilter === "empty") {
-        return !(item as RegisteredMember).Status.toLowerCase().includes("approved");
+        return !(item as RegisteredMember).Status.toLowerCase().includes(
+          "approved"
+        );
       }
     });
   }, [data, statusFilter]);
@@ -336,7 +353,10 @@ export const RegistrantTable = () => {
               const nextSize = Number(value);
               setPageSize(nextSize);
               table.setPageSize(nextSize);
-              const newTotalPages = Math.max(1, Math.ceil(totalFilteredRows / nextSize));
+              const newTotalPages = Math.max(
+                1,
+                Math.ceil(totalFilteredRows / nextSize)
+              );
               if (pageIndex > newTotalPages - 1) {
                 setPageIndex(newTotalPages - 1);
                 table.setPageIndex(newTotalPages - 1);
@@ -357,9 +377,9 @@ export const RegistrantTable = () => {
 
         <div className="flex items-center gap-3 sm:ml-auto">
           <div className="text-sm text-muted-foreground">
-            Showing {pageIndex * pageSize + 1} - {" "}
-            {Math.min(pageIndex * pageSize + pageSize, totalFilteredRows)}{" "}
-            of {totalFilteredRows}
+            Showing {pageIndex * pageSize + 1} -{" "}
+            {Math.min(pageIndex * pageSize + pageSize, totalFilteredRows)} of{" "}
+            {totalFilteredRows}
           </div>
           <div className="flex items-center gap-2">
             <Button
@@ -390,5 +410,3 @@ export const RegistrantTable = () => {
     </>
   );
 };
-
-

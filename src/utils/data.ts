@@ -1,13 +1,15 @@
 // @ts-ignore
 export function parseCSV(csvText, headersRow = 0) {
   const rows = csvText.split(/\r?\n/); // Split CSV text into rows, handling '\r' characters
-  
+
   // if headersRow is 0, select the first row, else do a loop to select all first `headersRow` rows
   let headers = [];
   if (headersRow > 0) {
     const headerRows = rows.slice(0, headersRow);
     for (const h of headerRows) {
-      headers.push(...h.split(",").map((header: string) => cleanHeader(header)));
+      headers.push(
+        ...h.split(",").map((header: string) => cleanHeader(header))
+      );
     }
   } else {
     headers = rows[0].split(",").map((header: string) => cleanHeader(header));
@@ -29,12 +31,14 @@ export function parseCSV(csvText, headersRow = 0) {
 // @ts-ignore
 export function parseTSV(tsvText, headersRow = 0) {
   const rows = tsvText.split(/\r?\n/);
-  
+
   let headers = [];
   if (headersRow > 0) {
     const headerRows = rows.slice(0, headersRow);
     for (const h of headerRows) {
-      headers.push(...h.split("\t").map((header: string) => cleanHeader(header)));
+      headers.push(
+        ...h.split("\t").map((header: string) => cleanHeader(header))
+      );
     }
   } else {
     headers = rows[0].split("\t").map((header: string) => cleanHeader(header));
@@ -54,5 +58,8 @@ export function parseTSV(tsvText, headersRow = 0) {
 }
 
 function cleanHeader(header: string) {
-  return header.trim().replace(/^"+|"+$/g, "").replace(/^\s+|\s+$/g, "");
+  return header
+    .trim()
+    .replace(/^"+|"+$/g, "")
+    .replace(/^\s+|\s+$/g, "");
 }

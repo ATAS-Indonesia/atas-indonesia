@@ -8,7 +8,7 @@ export interface RegisteredMember {
   "Alamat Lengkap": string;
   "Kode Pos": string;
   "Pendidikan Terakhir": string;
-  "Pekerjaan": string;
+  Pekerjaan: string;
   "Nama Instansi Pekerjaan / Sekolah / Perguruan Tinggi": string;
   "Nomor Telepon": string;
   "Tahun Bergabung Pramuka": string;
@@ -17,7 +17,7 @@ export interface RegisteredMember {
   "Pendidikan Kepramukaan": string;
   "Unggah Sertifikat Safe From Harm": string;
   "Tautan Profil SDGs Hub WOSM": string;
-  "Jabatan": string;
+  Jabatan: string;
   "Tanggal Mencapai Pramuka Garuda": string;
   "Tingkatan Pramuka": string;
   "Nomor Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
@@ -25,5 +25,5 @@ export interface RegisteredMember {
   "Asal Gugus Depan": string;
   "Asal Kwartir Cabang": string;
   "Asal Kwartir Daerah": string;
-  "Status": string;
+  Status: string;
 }
