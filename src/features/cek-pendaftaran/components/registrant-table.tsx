@@ -53,6 +53,22 @@ const columns = [
     enableHiding: false,
     enableSorting: true,
   }),
+  columnHelper.accessor("Tingkatan Pramuka Garuda Terakhir", {
+    header: "Tingkatan Pramuka Garuda",
+    cell: ({ row }) => {
+      const tingkatanMapper = {
+        "Siaga Garuda": "- Cub",
+        "Penggalang Garuda": "",
+        "Penegak Garuda": "- Rover",
+        "Pandega Garuda": "- Senior Rover",
+      }
+      return (
+        <div>
+          Pramuka {row.getValue("Tingkatan Pramuka Garuda Terakhir")} / Garuda Scout {tingkatanMapper[row.getValue("Tingkatan Pramuka Garuda Terakhir") as keyof typeof tingkatanMapper]}
+        </div>
+      )
+    }
+  }),
   // columnHelper.accessor("Asal Gugus Depan", {
   //   header: () => <div className="hidden sm:block">Gugus Depan</div>,
   //   cell: ({ row }) => {
@@ -98,7 +114,7 @@ const columns = [
 
       const link = (sfhLink || sdgLink) as string;
       const isSdgLink = sdgLink !== "";
-      const isSdgLinkValid = isSdgLink && sdgUrlRegex.test(sdgLink);
+      const isSdgLinkValid = isSdgLink && sdgUrlRegex.test(sdgLink.trim());
 
       return (
         <div>
@@ -152,6 +168,8 @@ export const RegistrantTable = () => {
 
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
+
+  console.log({ data });
 
   const filteredData = useMemo(() => {
     if (!data) return [];

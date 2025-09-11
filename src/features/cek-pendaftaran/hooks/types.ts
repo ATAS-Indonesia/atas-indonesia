@@ -19,7 +19,7 @@ export interface RegisteredMember {
   "Tautan Profil SDGs Hub WOSM": string;
   Jabatan: string;
   "Tanggal Mencapai Pramuka Garuda": string;
-  "Tingkatan Pramuka": string;
+  "Tingkatan Pramuka Garuda Terakhir": "Siaga Garuda" | "Penggalang Garuda" | "Penegak Garuda" | "Pandega Garuda";
   "Nomor Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
   "Unggah Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
   "Asal Gugus Depan": string;
