@@ -13,7 +13,8 @@ export interface Member {
 }
 
 const GOOGLE_SHEET_LINK =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vR31M811KmpqtBdUVWnl6lfyM5kPIXAKtfDEJ4hQWmiUw60z1yox5ibtmGopfRPXjS0Gt38lZ-wsNHZ/pub?gid=17432309&single=true&output=csv";
+  // "https://docs.google.com/spreadsheets/d/e/2PACX-1vR31M811KmpqtBdUVWnl6lfyM5kPIXAKtfDEJ4hQWmiUw60z1yox5ibtmGopfRPXjS0Gt38lZ-wsNHZ/pub?gid=17432309&single=true&output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEr_vzIyplue8clz1PZWbl5FlS7qM6O3_Z68ygEMcsqcCpgX9lVWLvwpei-_Ujj66EedmYlPLgANZt/pub?gid=0&single=true&output=csv";
 
 export const useFetchMember = () => {
   const memberList = useQuery({
