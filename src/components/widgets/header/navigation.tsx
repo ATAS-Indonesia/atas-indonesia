@@ -15,7 +15,7 @@ export function Navigation() {
         aria-label="Global"
         className="flex items-center justify-between p-6 lg:px-8"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">ATAS Indonesia</span>
             <img
@@ -40,7 +40,6 @@ export function Navigation() {
           <SheetContent>
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
                 <img
                   alt=""
                   src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
@@ -62,6 +61,9 @@ export function Navigation() {
                   ))}
                 </div>
                 <div className="py-6">
+                  <Link href="/cek-pendaftaran" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    Cek Pendaftaran
+                  </Link>
                   <Link
                     href="/cek-nomor"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
@@ -84,7 +86,13 @@ export function Navigation() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-6">
+          <Link
+            href="/cek-pendaftaran"
+            className="text-sm/6 font-semibold text-gray-900"
+          >
+            Cek Pendaftaran
+          </Link>
           <Link
             href="/cek-nomor"
             className="text-sm/6 font-semibold text-gray-900"
