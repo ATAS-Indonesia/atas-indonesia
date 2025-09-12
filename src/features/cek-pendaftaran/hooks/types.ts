@@ -21,7 +21,7 @@ export interface RegisteredMember {
   "Tanggal Mencapai Pramuka Garuda": string;
   "Tingkatan Pramuka Garuda Terakhir": "Siaga Garuda" | "Penggalang Garuda" | "Penegak Garuda" | "Pandega Garuda";
   "Nomor Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
-  "Unggah Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
+  "Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir": string;
   "Asal Gugus Depan": string;
   "Asal Kwartir Cabang": string;
   "Asal Kwartir Daerah": string;

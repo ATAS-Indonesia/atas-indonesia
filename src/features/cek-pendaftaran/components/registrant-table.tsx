@@ -14,6 +14,7 @@ import {
 } from "@tanstack/react-table";
 import { Settings2, Squirrel } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useFetchRegistrants } from "../hooks/useFetchRegistrants";
 import type { RegisteredMember } from "../hooks/types";
 import { Button } from "@/components/ui/button";
@@ -41,10 +42,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { VerificationDialog } from "./verification-dialog";
+import { VerificationLink } from "./verification-link";
 
 const columnHelper = createColumnHelper<RegisteredMember>();
 
-const columns = [
+const createColumns = (isValidator: boolean, onLinkClick: (url: string, type: "sfh" | "sdg" | "invalid") => void) => [
   columnHelper.accessor("Nama Lengkap", {
     header: "Nama",
     cell: ({ row }) => {
@@ -69,16 +72,6 @@ const columns = [
       )
     }
   }),
-  // columnHelper.accessor("Asal Gugus Depan", {
-  //   header: () => <div className="hidden sm:block">Gugus Depan</div>,
-  //   cell: ({ row }) => {
-  //     return (
-  //       <div className="hidden sm:block">{row.getValue("Asal Gugus Depan")}</div>
-  //     );
-  //   },
-  //   enableHiding: true,
-  //   enableSorting: false,
-  // }),
   columnHelper.accessor("Asal Kwartir Cabang", {
     header: () => <div className="hidden sm:block">Kwartir Cabang</div>,
     cell: ({ row }) => {
@@ -103,34 +96,36 @@ const columns = [
     enableHiding: true,
     enableSorting: false,
   }),
-  columnHelper.accessor("Tautan Profil SDGs Hub WOSM", {
-    header: "Tautan Verifikasi",
-    cell: ({ row }) => {
-      const sfhLink = row.original["Unggah Sertifikat Safe From Harm"];
-      const sdgLink = row.original["Tautan Profil SDGs Hub WOSM"];
+  ...(isValidator ? [
+    columnHelper.accessor("Tautan Profil SDGs Hub WOSM", {
+      header: "Tautan Verifikasi",
+      cell: ({ row }) => {
+        const sfhLink = row.original["Unggah Sertifikat Safe From Harm"];
+        const sdgLink = row.original["Tautan Profil SDGs Hub WOSM"];
 
-      // Regex to validate SDGs Hub WOSM profile URL
-      const sdgUrlRegex = /^https:\/\/sdgs\.scout\.org\/user\/\d+$/;
-
-      const link = (sfhLink || sdgLink) as string;
-      const isSdgLink = sdgLink !== "";
-      const isSdgLinkValid = isSdgLink && sdgUrlRegex.test(sdgLink.trim());
-
-      return (
-        <div>
-          <a href={link} target="_blank" rel="noreferrer noopener">
-            {sfhLink && "Safe From Harm"}
-            {sdgLink && isSdgLinkValid && "SDGs Hub WOSM"}
-            {sdgLink && !isSdgLinkValid && (
-              <span className="text-destructive">Tautan Tidak Valid</span>
-            )}
+        return (
+          <VerificationLink
+            sfhLink={sfhLink}
+            sdgLink={sdgLink}
+            onLinkClick={onLinkClick}
+            status={row.original["Status"]}
+          />
+        );
+      },
+      enableHiding: false,
+      enableSorting: false,
+    }),
+    columnHelper.accessor("Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir", {
+      header: "Sertifikat Pramuka Garuda",
+      cell: ({ row }) => {
+        return (
+          <a href={row.original["Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir"]} target="_blank" rel="noreferrer noopener">
+            Sertifikat
           </a>
-        </div>
-      );
-    },
-    enableHiding: false,
-    enableSorting: false,
-  }),
+        )
+      }
+    }),
+  ] : []),
   columnHelper.accessor("Status", {
     header: "Status",
     cell: ({ row }) => {
@@ -147,6 +142,16 @@ const columns = [
         );
       }
 
+      if (status.toLowerCase().includes("reject")) {
+        return (
+          <Badge
+            variant={"destructive"}
+          >
+            Ditolak
+          </Badge>
+        )
+      }
+
       return <div>Proses Verifikasi</div>;
     },
     enableHiding: false,
@@ -158,6 +163,13 @@ const DEFAULT_PAGE_SIZE = 20;
 
 export const RegistrantTable = () => {
   const { data, isError, isLoading } = useFetchRegistrants();
+  const searchParams = useSearchParams();
+  const isValidator = searchParams?.get('viewAs') === 'validator';
+  
+  // Dialog state
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogUrl, setDialogUrl] = useState("");
+  const [dialogType, setDialogType] = useState<"sfh" | "sdg" | "invalid">("sfh");
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -169,7 +181,16 @@ export const RegistrantTable = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
 
-  console.log({ data });
+  const handleLinkClick = (url: string, type: "sfh" | "sdg" | "invalid") => {
+    setDialogUrl(url);
+    setDialogType(type);
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    setDialogUrl("");
+  };
 
   const filteredData = useMemo(() => {
     if (!data) return [];
@@ -188,6 +209,8 @@ export const RegistrantTable = () => {
       }
     });
   }, [data, statusFilter]);
+
+  const columns = createColumns(isValidator, handleLinkClick);
 
   const table = useReactTable({
     data: (filteredData ?? []) as RegisteredMember[],
@@ -228,6 +251,7 @@ export const RegistrantTable = () => {
           }
           className="max-w-sm"
         />
+        
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -284,26 +308,7 @@ export const RegistrantTable = () => {
             >
               Belum disetujui
             </DropdownMenuCheckboxItem>
-            {/* Column Visibility */}
-            {/* {table
-              .getAllColumns()
-              .filter(
-                column =>
-                  typeof column.accessorFn !== "undefined" &&
-                  column.getCanHide()
-              )
-              .map(column => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={value => column.toggleVisibility(!!value)}
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })} */}
+            
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -425,6 +430,13 @@ export const RegistrantTable = () => {
           </div>
         </div>
       </div>
+
+      <VerificationDialog
+        isOpen={dialogOpen}
+        onClose={handleDialogClose}
+        url={dialogUrl}
+        linkType={dialogType}
+      />
     </>
   );
 };
