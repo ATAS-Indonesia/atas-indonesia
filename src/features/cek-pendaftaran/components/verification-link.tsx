@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 
 // Component for verification link that opens dialog
-export const VerificationLink = ({ 
-  sfhLink, 
-  sdgLink, 
+export const VerificationLink = ({
+  sfhLink,
+  sdgLink,
   onLinkClick,
-  status
+  status,
 }: {
   sfhLink: string;
   sdgLink: string;
@@ -32,12 +32,13 @@ export const VerificationLink = ({
   return (
     <button
       onClick={handleClick}
-      className={
-        cn("text-blue-600 hover:text-blue-800 hover:underline text-left", {
+      className={cn(
+        "text-blue-600 hover:text-blue-800 hover:underline text-left",
+        {
           "text-purple-600 hover:text-purple-800 hover:underline": !!sfhLink,
           "text-gray-600 italic": !!status,
-        })
-      }
+        }
+      )}
       disabled={!sfhLink && !sdgLink}
     >
       {sfhLink && "Safe From Harm"}

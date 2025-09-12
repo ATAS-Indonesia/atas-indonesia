@@ -17,6 +17,8 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useFetchRegistrants } from "../hooks/useFetchRegistrants";
 import type { RegisteredMember } from "../hooks/types";
+import { VerificationDialog } from "./verification-dialog";
+import { VerificationLink } from "./verification-link";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -42,12 +44,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { VerificationDialog } from "./verification-dialog";
-import { VerificationLink } from "./verification-link";
 
 const columnHelper = createColumnHelper<RegisteredMember>();
 
-const createColumns = (isValidator: boolean, onLinkClick: (url: string, type: "sfh" | "sdg" | "invalid") => void) => [
+const createColumns = (
+  isValidator: boolean,
+  onLinkClick: (url: string, type: "sfh" | "sdg" | "invalid") => void
+) => [
   columnHelper.accessor("Nama Lengkap", {
     header: "Nama",
     cell: ({ row }) => {
@@ -64,13 +67,21 @@ const createColumns = (isValidator: boolean, onLinkClick: (url: string, type: "s
         "Penggalang Garuda": "",
         "Penegak Garuda": "- Rover",
         "Pandega Garuda": "- Senior Rover",
-      }
+      };
       return (
         <div>
-          Pramuka {row.getValue("Tingkatan Pramuka Garuda Terakhir")} / Garuda Scout {tingkatanMapper[row.getValue("Tingkatan Pramuka Garuda Terakhir") as keyof typeof tingkatanMapper]}
+          Pramuka {row.getValue("Tingkatan Pramuka Garuda Terakhir")} / Garuda
+          Scout{" "}
+          {
+            tingkatanMapper[
+              row.getValue(
+                "Tingkatan Pramuka Garuda Terakhir"
+              ) as keyof typeof tingkatanMapper
+            ]
+          }
         </div>
-      )
-    }
+      );
+    },
   }),
   columnHelper.accessor("Asal Kwartir Cabang", {
     header: () => <div className="hidden sm:block">Kwartir Cabang</div>,
@@ -96,36 +107,49 @@ const createColumns = (isValidator: boolean, onLinkClick: (url: string, type: "s
     enableHiding: true,
     enableSorting: false,
   }),
-  ...(isValidator ? [
-    columnHelper.accessor("Tautan Profil SDGs Hub WOSM", {
-      header: "Tautan Verifikasi",
-      cell: ({ row }) => {
-        const sfhLink = row.original["Unggah Sertifikat Safe From Harm"];
-        const sdgLink = row.original["Tautan Profil SDGs Hub WOSM"];
+  ...(isValidator
+    ? [
+        columnHelper.accessor("Tautan Profil SDGs Hub WOSM", {
+          header: "Tautan Verifikasi",
+          cell: ({ row }) => {
+            const sfhLink = row.original["Unggah Sertifikat Safe From Harm"];
+            const sdgLink = row.original["Tautan Profil SDGs Hub WOSM"];
 
-        return (
-          <VerificationLink
-            sfhLink={sfhLink}
-            sdgLink={sdgLink}
-            onLinkClick={onLinkClick}
-            status={row.original["Status"]}
-          />
-        );
-      },
-      enableHiding: false,
-      enableSorting: false,
-    }),
-    columnHelper.accessor("Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir", {
-      header: "Sertifikat Pramuka Garuda",
-      cell: ({ row }) => {
-        return (
-          <a href={row.original["Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir"]} target="_blank" rel="noreferrer noopener">
-            Sertifikat
-          </a>
-        )
-      }
-    }),
-  ] : []),
+            return (
+              <VerificationLink
+                sfhLink={sfhLink}
+                sdgLink={sdgLink}
+                onLinkClick={onLinkClick}
+                status={row.original["Status"]}
+              />
+            );
+          },
+          enableHiding: false,
+          enableSorting: false,
+        }),
+        columnHelper.accessor(
+          "Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir",
+          {
+            header: "Sertifikat Pramuka Garuda",
+            cell: ({ row }) => {
+              return (
+                <a
+                  href={
+                    row.original[
+                      "Unggah Scan Surat Keputusan / Piagam / Sertifikat Pramuka Garuda Terakhir"
+                    ]
+                  }
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Sertifikat
+                </a>
+              );
+            },
+          }
+        ),
+      ]
+    : []),
   columnHelper.accessor("Status", {
     header: "Status",
     cell: ({ row }) => {
@@ -143,13 +167,7 @@ const createColumns = (isValidator: boolean, onLinkClick: (url: string, type: "s
       }
 
       if (status.toLowerCase().includes("reject")) {
-        return (
-          <Badge
-            variant={"destructive"}
-          >
-            Ditolak
-          </Badge>
-        )
+        return <Badge variant={"destructive"}>Ditolak</Badge>;
       }
 
       return <div>Proses Verifikasi</div>;
@@ -164,12 +182,14 @@ const DEFAULT_PAGE_SIZE = 20;
 export const RegistrantTable = () => {
   const { data, isError, isLoading } = useFetchRegistrants();
   const searchParams = useSearchParams();
-  const isValidator = searchParams?.get('viewAs') === 'validator';
-  
+  const isValidator = searchParams?.get("viewAs") === "validator";
+
   // Dialog state
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogUrl, setDialogUrl] = useState("");
-  const [dialogType, setDialogType] = useState<"sfh" | "sdg" | "invalid">("sfh");
+  const [dialogType, setDialogType] = useState<"sfh" | "sdg" | "invalid">(
+    "sfh"
+  );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -251,7 +271,6 @@ export const RegistrantTable = () => {
           }
           className="max-w-sm"
         />
-        
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -308,7 +327,6 @@ export const RegistrantTable = () => {
             >
               Belum disetujui
             </DropdownMenuCheckboxItem>
-            
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ExternalLink, User, MapPin, Clock, Briefcase } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ExternalLink, User, MapPin, Clock, Briefcase } from "lucide-react";
 
 interface UserProfileData {
   fullName: string;
@@ -28,7 +28,12 @@ interface VerificationDialogProps {
   linkType: "sfh" | "sdg" | "invalid";
 }
 
-export const VerificationDialog = ({ isOpen, onClose, url, linkType }: VerificationDialogProps) => {
+export const VerificationDialog = ({
+  isOpen,
+  onClose,
+  url,
+  linkType,
+}: VerificationDialogProps) => {
   const [userData, setUserData] = useState<UserProfileData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,18 +46,22 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
     setUserData(null);
 
     try {
-      const response = await fetch(`/api/scrape-user-profile?url=${encodeURIComponent(url)}`);
-      
+      const response = await fetch(
+        `/api/scrape-user-profile?url=${encodeURIComponent(url)}`
+      );
+
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch user profile');
+        throw new Error(errorData.error || "Failed to fetch user profile");
       }
 
       const data = await response.json();
       setUserData(data);
     } catch (err) {
-      console.error('Error fetching user profile:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch user profile');
+      console.error("Error fetching user profile:", err);
+      setError(
+        err instanceof Error ? err.message : "Failed to fetch user profile"
+      );
     } finally {
       setLoading(false);
     }
@@ -80,8 +89,10 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
   };
 
   const getDialogDescription = () => {
-    if (linkType === "sfh") return "Lihat sertifikat Safe From Harm untuk calon anggota.";
-    if (linkType === "sdg") return "Lihat informasi profil SDGs Hub WOSM untuk calon anggota.";
+    if (linkType === "sfh")
+      return "Lihat sertifikat Safe From Harm untuk calon anggota.";
+    if (linkType === "sdg")
+      return "Lihat informasi profil SDGs Hub WOSM untuk calon anggota.";
     return "Tautan ini tampaknya bukan tautan verifikasi yang valid.";
   };
 
@@ -99,9 +110,7 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
             )}
             {getDialogTitle()}
           </DialogTitle>
-          <DialogDescription>
-            {getDialogDescription()}
-          </DialogDescription>
+          <DialogDescription>{getDialogDescription()}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -122,12 +131,11 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
                 Tautan ini tampaknya bukan tautan verifikasi yang valid
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                Jika Anda yakin ini adalah kesalahan, Anda masih dapat membuka tautan untuk verifikasi manual
+                Jika Anda yakin ini adalah kesalahan, Anda masih dapat membuka
+                tautan untuk verifikasi manual
               </p>
               <div className="mt-4 p-3 bg-muted rounded-lg">
-                <p className="text-xs text-muted-foreground break-all">
-                  {url}
-                </p>
+                <p className="text-xs text-muted-foreground break-all">{url}</p>
               </div>
             </div>
           ) : (
@@ -155,12 +163,10 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
 
               {error && (
                 <div className="text-center py-4">
-                  <div className="text-destructive text-sm">
-                    {error}
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <div className="text-destructive text-sm">{error}</div>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={fetchUserProfile}
                     className="mt-2"
                   >
@@ -176,36 +182,46 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
                       📦 Cached data (age: {userData.cacheAge}s)
                     </div>
                   )} */}
-                  
+
                   <div className="flex items-center gap-3">
                     <User className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">Nama Lengkap</div>
-                      <div className="text-sm text-muted-foreground">{userData.fullName}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {userData.fullName}
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <MapPin className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">Negara</div>
-                      <div className="text-sm text-muted-foreground">{userData.country}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {userData.country}
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <Clock className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">Service Hours</div>
-                      <div className="text-sm text-muted-foreground">{userData.serviceHours}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {userData.serviceHours}
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <Briefcase className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <div className="text-sm font-medium">Service Projects</div>
-                      <div className="text-sm text-muted-foreground">{userData.serviceProjects}</div>
+                      <div className="text-sm font-medium">
+                        Service Projects
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {userData.serviceProjects}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -219,14 +235,19 @@ export const VerificationDialog = ({ isOpen, onClose, url, linkType }: Verificat
             Tutup
           </Button>
           <Button asChild>
-            <a 
-              href={url} 
-              target="_blank" 
+            <a
+              href={url}
+              target="_blank"
               rel="noreferrer noopener"
               className="flex items-center gap-2"
             >
               <ExternalLink className="h-4 w-4" />
-              Buka {linkType === "sfh" ? "Sertifikat" : linkType === "sdg" ? "Profil" : "Tautan"}
+              Buka{" "}
+              {linkType === "sfh"
+                ? "Sertifikat"
+                : linkType === "sdg"
+                ? "Profil"
+                : "Tautan"}
             </a>
           </Button>
         </div>
