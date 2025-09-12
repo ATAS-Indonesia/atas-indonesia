@@ -159,15 +159,25 @@ const createColumns = (
         return (
           <Badge
             variant={"secondary"}
-            className="bg-atas-primary-200 text-atas-primary-950"
+            className="bg-green-600 text-green-100"
           >
             Disetujui
           </Badge>
         );
       }
 
-      if (status.toLowerCase().includes("reject")) {
+      const rejectKeywords = ["reject", "denied", "decline"]
+
+      if (rejectKeywords.includes(status.toLowerCase())) {
         return <Badge variant={"destructive"}>Ditolak</Badge>;
+      }
+
+      if (status.toLowerCase().includes("empty")) {
+        return <Badge variant={"outline"} className="bg-atas-primary-200 text-atas-primary-950">Service Hour Kosong</Badge>;
+      }
+
+      if (status.toLowerCase().includes("invalid link")) {
+        return <Badge variant={"secondary"} className="bg-red-300 text-red-800">Tautan Tidak Valid</Badge>;
       }
 
       return <div>Proses Verifikasi</div>;
