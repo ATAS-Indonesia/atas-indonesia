@@ -1,14 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import { toast } from "sonner";
+import { useFetchMember } from "../cek-nomor/hooks/useFetchMember";
+import { Member } from "../cek-nomor/hooks/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toast } from "@/components/ui/toast";
-import { useState } from "react";
-import { toast } from "sonner";
-import { useFetchMember } from "../cek-nomor/hooks/useFetchMember";
-import { Member } from "../cek-nomor/hooks/types";
 
 export const CetakSertifikat = () => {
   const [nomorAnggota, setNomorAnggota] = useState("");
@@ -25,7 +25,11 @@ export const CetakSertifikat = () => {
       return;
     }
 
-    const member = memberList.find((member: Member) => member["Nomor ATAS"] === nomorAnggota && member["Nama Lengkap"].toLowerCase() === namaLengkap.toLowerCase());
+    const member = memberList.find(
+      (member: Member) =>
+        member["Nomor ATAS"] === nomorAnggota &&
+        member["Nama Lengkap"].toLowerCase() === namaLengkap.toLowerCase()
+    );
 
     if (!member) {
       toast.error("Terjadi kesalahan!", {
@@ -57,11 +61,23 @@ export const CetakSertifikat = () => {
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="nomor-anggota">Nomor Anggota</Label>
-            <Input type="text" placeholder="Masukkan nomor anggota, mis. 282" id="nomor-anggota" value={nomorAnggota} onChange={(e) => setNomorAnggota(e.target.value)} />
+            <Input
+              type="text"
+              placeholder="Masukkan nomor anggota, mis. 282"
+              id="nomor-anggota"
+              value={nomorAnggota}
+              onChange={e => setNomorAnggota(e.target.value)}
+            />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="nama">Nama Lengkap</Label>
-            <Input type="text" placeholder="Masukkan nama lengkap" id="nama" value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} />
+            <Input
+              type="text"
+              placeholder="Masukkan nama lengkap"
+              id="nama"
+              value={namaLengkap}
+              onChange={e => setNamaLengkap(e.target.value)}
+            />
           </div>
           <Button onClick={handleCetakSertifikat}>Cetak Sertifikat</Button>
         </CardContent>
