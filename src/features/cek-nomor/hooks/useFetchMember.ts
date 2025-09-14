@@ -26,7 +26,7 @@ export const useFetchMember = () => {
         const data = response.data;
 
         if (data) {
-          return parseCSV(data);
+          return parseCSV(data) as Member[];
         }
 
         return [];
