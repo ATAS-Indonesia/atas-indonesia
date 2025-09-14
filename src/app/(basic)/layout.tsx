@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import { SiteFooter } from "@/components/widgets/footer/site-footer";
 import { Navigation } from "@/components/widgets/header/navigation";
 
@@ -13,6 +14,7 @@ export default function Layout({
         {children}
       </main>
       <SiteFooter />
+      <Toaster richColors position="top-right" />
     </>
   );
 }
