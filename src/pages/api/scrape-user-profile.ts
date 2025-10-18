@@ -62,7 +62,7 @@ export default async function handler(
     const country = $(".user-full__country").text().trim();
 
     // Get service count elements (there should be two)
-    const serviceCountElements = $(".user-full__service-count");
+    const serviceCountElements = $(".user-full__worked-hours-count");
     const serviceHours = serviceCountElements.eq(0).text().trim();
     const serviceProjects = serviceCountElements.eq(1).text().trim();
 
@@ -78,6 +78,7 @@ export default async function handler(
       country: country || "Not specified",
       serviceHours: serviceHours || "0",
       serviceProjects: serviceProjects || "0",
+      youthDevelopmentHours: serviceProjects || "0",
       url,
       cached: false,
     };

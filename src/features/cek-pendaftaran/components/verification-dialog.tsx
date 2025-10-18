@@ -17,6 +17,7 @@ interface UserProfileData {
   country: string;
   serviceHours: string;
   serviceProjects: string;
+  youthDevelopmentHours: string;
   cached?: boolean;
   cacheAge?: number;
 }
@@ -217,10 +218,10 @@ export const VerificationDialog = ({
                     <Briefcase className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">
-                        Service Projects
+                        Youth Development Hours
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {userData.serviceProjects}
+                        {userData.youthDevelopmentHours}
                       </div>
                     </div>
                   </div>
